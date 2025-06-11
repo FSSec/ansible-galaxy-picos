@@ -1,0 +1,14 @@
+---
+- name: Configure vlans
+  fssec.picos.picos_config:
+    cmd: >
+      set vlans vlan-id {{ item.vlan_id }}
+      {% if item.vlan_id is defined %} description {{ item.description }} {% endif %}
+    mode: cli_config
+  loop: "{{ spine_vlans_config }}"
+
+- name: Delete vlans
+  fssec.picos.picos_config:
+    cmd: "delete vlans vlan-id {{ item.vlan_id }}"
+    mode: cli_config
+  loop: "{{ spine_vlans_delete }}"

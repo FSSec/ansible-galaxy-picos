@@ -1,0 +1,5 @@
+---
+- name: Set System DNS Server IP
+  fssec.picos.picos_config:
+    cmd: "set system dns-server-ip {{ dns_server_ip }}"
+    mode: cli_config

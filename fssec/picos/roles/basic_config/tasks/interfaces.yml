@@ -1,0 +1,8 @@
+---
+- name: Configure interfaces
+  fssec.picos.picos_config:
+    cmd: >
+      set interface aggregate-ethernet {{ item.name }}
+      {% if item.description is defined %} description {{ item.description }} {% endif %}
+    mode: cli_config
+  loop: "{{ spine_ints }}"

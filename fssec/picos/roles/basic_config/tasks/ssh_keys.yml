@@ -1,0 +1,36 @@
+---
+- name: Ensure .ssh directory exists
+  become: true
+  file:
+    path: "/home/{{ ssh_user }}/.ssh"
+    state: directory
+    owner: "{{ owner_user }}"
+    group: "{{ group_user }}"
+    mode: '0700'
+- name: Ensure .ssh directory exists
+  file:
+    path: "{{ ssh_home }}/.ssh"
+    state: directory
+    owner: "{{ ssh_user }}"
+    group: xorp
+    mode: '0700'
+
+- name: Add SSH public key to authorized_keys
+  authorized_key:
+    user: "{{ ssh_user }}"
+    key: "{{ ssh_public_key }}"
+    state: present
+
+- name: Ensure PubkeyAuthentication is enabled
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?PubkeyAuthentication'
+    line: 'PubkeyAuthentication yes'
+    state: present
+
+- name: Ensure AuthorizedKeysFile is configured
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?AuthorizedKeysFile'
+    line: 'AuthorizedKeysFile .ssh/authorized_keys'
+    state: present

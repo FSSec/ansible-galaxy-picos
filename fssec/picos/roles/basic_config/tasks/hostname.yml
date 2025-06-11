@@ -1,0 +1,5 @@
+---
+- name: Set hostname
+  fssec.picos.picos_config:
+    cmd: "set system hostname {{ hostname }}"
+    mode: cli_config

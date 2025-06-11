@@ -1,0 +1,5 @@
+---
+- name: Configure NTP server
+  fssec.picos.picos_config:
+    cmd: "set system ntp server-ip {{ ntp_server }}"
+    mode: cli_config

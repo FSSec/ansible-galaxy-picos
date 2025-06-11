@@ -1,0 +1,7 @@
+---
+- name: Basic switch config
+  hosts: switches
+  become: true
+  gather_facts: no
+  roles:
+    - fssec.picos.basic_config

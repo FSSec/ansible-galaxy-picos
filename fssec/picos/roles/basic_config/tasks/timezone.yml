@@ -1,0 +1,5 @@
+---
+- name: Configure timezone
+  fssec.picos.picos_config:
+    cmd: "set system timezone {{ timezone }}"
+    mode: cli_config

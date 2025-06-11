@@ -1,0 +1,11 @@
+---
+- name: Restart ssh service on switches
+  hosts: switches
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Restart sshd service
+      service:
+        name: sshd
+        state: restarted

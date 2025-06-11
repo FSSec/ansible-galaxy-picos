@@ -1,0 +1,12 @@
+---
+- name: Configure management IP
+  fssec.picos.picos_config:
+    cmd: "set system management-ethernet eth0 ip-address IPv4 {{ management_ip }}"
+    mode: cli_config
+  when: management_ip is defined and management_ip != ""
+
+- name: Configure default gateway
+  fssec.picos.picos_config:
+    cmd: "set system management-ethernet eth0 ip-gateway IPv4 {{ gateway }}"
+    mode: cli_config
+  when: gateway is defined and gateway != ""

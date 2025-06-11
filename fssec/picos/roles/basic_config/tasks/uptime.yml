@@ -1,0 +1,12 @@
+---
+- name: Shows uptime info for all switches
+  fssec.picos.picos_config:
+    cmd: "uptime"
+    mode: shell
+  register: exec_result
+  when: show_uptime is defined and show_uptime | bool
+  
+- name: Show exec_result
+  debug:
+    var: exec_result.stdout_lines
+  

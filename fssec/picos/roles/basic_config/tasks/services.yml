@@ -1,0 +1,18 @@
+---
+- name: Enable LLDP
+  fssec.picos.picos_config:
+    cmd: "set protocols lldp enable {{ enable_lldp | lower }}"
+    mode: cli_config
+  when: enable_lldp is defined and enable_lldp | bool
+
+- name: Enable SSH
+  fssec.picos.picos_config:
+    cmd: "set system services ssh disable {{ (not enable_ssh) | lower }}"
+    mode: cli_config
+  when: enable_ssh is defined and enable_ssh | bool
+
+- name: Set login banner
+  fssec.picos.picos_config:
+    cmd: "set system login banner '{{ login_banner }}'"
+    mode: cli_config
+  when: login_banner is defined and login_banner != ""

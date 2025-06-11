@@ -1,0 +1,35 @@
+- include_tasks: hostname.yml
+  when: hostname is defined and hostname != ""
+
+- include_tasks: management.yml
+  when: management_ip is defined or gateway is defined
+
+- include_tasks: users.yml
+  when: username is defined and password is defined and username != "" and password != ""
+
+- include_tasks: ssh_keys.yml
+  when: ssh_public_key is defined
+
+- include_tasks: ntp.yml
+  when: ntp_server is defined and ntp_server != ""
+
+- include_tasks: dns.yml
+  when: dns_server_ip is defined and dns_server_ip != ""
+
+- include_tasks: timezone.yml
+  when: timezone is defined and timezone != ""
+
+- include_tasks: snmp.yml
+  when: snmp_community is defined and snmp_authorization is defined and snmp_community != "" and snmp_authorization != ""
+
+- include_tasks: interfaces.yml
+  when: spine_ints is defined
+
+- include_tasks: services.yml
+  when: enable_lldp is defined or enable_ssh is defined or login_banner is defined
+
+- include_tasks: uptime.yml
+  when: show_uptime is defined
+
+- include_tasks: vlans.yml
+  when: spine_vlans_config is defined and spine_vlans_delete is defined

@@ -1,0 +1,5 @@
+---
+- name: Configure SNMP
+  fssec.picos.picos_config:
+    cmd: "set protocols snmp community {{ snmp_community }} authorization {{ snmp_authorization }}"
+    mode: cli_config
