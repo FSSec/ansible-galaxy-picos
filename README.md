@@ -1,4 +1,3 @@
-
 # Ansible Galaxy PICOS Reference Guide
 
 **fssec.picos** is an Ansible collection designed to manage and automate configurations for Pica8 network devices. This collection provides modules and playbooks to simplify network automation tasks.
@@ -31,7 +30,7 @@ ansible-galaxy collection list
 ## Usage
 
 - Import the collection in your playbooks by roles:
- ```yaml
+```yaml
  ## playbook.yaml
  ## configure your path to variables
  ---
@@ -44,10 +43,10 @@ ansible-galaxy collection list
    roles:
      - fssec.picos.basic_config
 ```
-   
+
 - configure your group variables:
 ```bash
-## pica8_devices.yml 
+## pica8_devices.yml
 ## Do not need to configure all configuration items. The following configuration items are optional and only perform tasks related to the configured variables.
 
 hostname: PICA8-SPINE01
@@ -79,13 +78,13 @@ spine_ints:
   - name: ae2
     description: test22
 
-spine_vlans_config:
+vlans_config:
   - vlan_id: 10
     description: test11
   - vlan_id: 20
     description: test22
 
-spine_vlans_delete:
+vlans_delete:
   - vlan_id: 10
   - vlan_id: 20
 
@@ -93,7 +92,7 @@ show_uptime: true
 
 dns_server_ip: 10.10.10.12
 ```
-   
+
 - configure your hosts:
 ```bash
 ## hosts
@@ -301,4 +300,3 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 ## Support
 
 For support or questions, please contact **[sec@feisu.com]**.
-

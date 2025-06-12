@@ -23,7 +23,7 @@
   when: snmp_community is defined and snmp_authorization is defined and snmp_community != "" and snmp_authorization != ""
 
 - include_tasks: interfaces.yml
-  when: spine_ints is defined
+  when: LAG_CONFIG is defined
 
 - include_tasks: services.yml
   when: enable_lldp is defined or enable_ssh is defined or login_banner is defined
@@ -32,4 +32,4 @@
   when: show_uptime is defined
 
 - include_tasks: vlans.yml
-  when: spine_vlans_config is defined and spine_vlans_delete is defined
+  when: vlans_config is defined and vlans_delete is defined

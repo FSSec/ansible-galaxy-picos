@@ -1,8 +1,13 @@
 ---
 - name: Configure interfaces
   fssec.picos.picos_config:
-    cmd: >
-      set interface aggregate-ethernet {{ item.name }}
-      {% if item.description is defined %} description {{ item.description }} {% endif %}
+    cmd: |
+      set interface aggregate-ethernet {{ item.name }} description "{{ item.description }}";
+      set interface aggregate-ethernet {{ item.name }} aggregated-ether-options lacp enable {{ item.lacp_enable | default(true) | string | lower }};
+      set interface aggregate-ethernet {{ item.name }} family ethernet-switching native-vlan-id {{ item.native_vlan_id | default('3966') }};
+      set interface aggregate-ethernet {{ item.name }} family ethernet-switching port-mode {{ item.port_mode | default('trunk') }};
+      {% for vlan in item.vlan_members.split(', ') %}
+      set interface aggregate-ethernet {{ item.name }} family ethernet-switching vlan members {{ vlan }};
+      {% endfor %}
     mode: cli_config
-  loop: "{{ spine_ints }}"
+  loop: "{{ LAG_CONFIG }}"

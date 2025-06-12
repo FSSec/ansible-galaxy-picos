@@ -15,30 +15,29 @@ owner_user: admin
 group_user: xorp
 
 ssh_user: admin
+ssh_home: "/home/admin"
 ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDJb5ytIV4kRKa4M/A8po3r/Rdy6x6vMSAUu3ssuBY6gg8QdZo+opnJmnku7cQ3vXzoB+cMkoIWrRUbymQJSytkEBS2jlIO1x6Bw0UgRud9hOUZJodnZBBb3jFX2tXYdSuD6Pc3URlbzroD4XiPh/0s1uP93Tt71pK5BiYYQ03GiW9GagZfRAd/0okCdriOSY8MvZGXY6zHB7orirWNMsRgUViBAPjc3tDQiRJ/iSftEukN2QCaFCrHmjBKgWULP7aXpv+w0YP+n5CsRXUWSTkEiYGQeqVpckZv5D2M1kziilUFL9S+Ax3G4VOfhoTABY4zh7ns99G68CGzuqcJxa4/Mv0pBJHupUlFgL7N8N3s1+sCXWC+4m9ZG/YXiSH2eeYXvwYRhvMO6GlistDYV6aQgHNJ7RrsBsqD1vObVzV2p3mMLfhPZRZo+furlUs6N8RIAK2wJZGkqrPc0zI1vNHbSuTmDdc5InhsC52hRqM9JkMi1eqeKFapVUBtEBLAljM= pica8@pica8
 
 snmp_community: public
 snmp_authorization: read-only
 
-spine_ints:
+LAG_CONFIG:
   - name: ae1
     description: test11
-  - name: ae2
-    description: test22
+    lacp_enable: true
+    native_vlan_id: 3966
+    vlan_members: 20, 30, 3966
 
-spine_vlans_config:
+vlans_config:
   - vlan_id: 10
     description: test11
   - vlan_id: 20
     description: test22
 
-spine_vlans_delete:
+vlans_delete:
   - vlan_id: 10
   - vlan_id: 20
 
 show_uptime: true
 
 dns_server_ip: 10.10.10.12
-
-ssh_user: admin
-ssh_home: "/home/admin"
